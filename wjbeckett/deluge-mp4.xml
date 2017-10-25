@@ -1,105 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Containers>
+<Container>
   <TemplateURL>https://raw.githubusercontent.com/wjbeckett/docker-templates/master/wjbeckett/deluge-mp4.xml</TemplateURL>
   <Beta>True</Beta>
   <Category>Downloaders:</Category>
+  <Changes>
+  [b]25.10.2017:[/b] Initial Release.
+  </Changes>
   <Name>deluge-mp4</Name>
+  <Support>https://github.com/wjbeckett/deluge-mp4/issues/new</Support>
   <Description>
-    Deluge is a full-featured ​BitTorrent client for Linux, OS X, Unix and Windows. It uses ​libtorrent in its backend and features multiple user-interfaces including: GTK+, web and console. It has been designed using the client server model with a daemon process that handles all the bittorrent activity. The Deluge daemon is able to run on headless machines with the user-interfaces being able to connect remotely from any platform.[br]
-    This Docker includes OpenVPN to ensure a secure and private connection to the Internet, including use of iptables to prevent IP leakage when the tunnel is down. It also includes Privoxy to allow unfiltered access to index sites, to use Privoxy please point your application at "host ip:8118"[br][br]
-    [b][u][span style='color: #E80000;']Configuration[/span][/u][/b][br]
-    [b]/config[/b] This is where deluge will store it's configuration file, database and logs.[br]
-    [b]/data[/b] This is where deluge will store data downloaded, watched folder, and archived torrents.[br][br]
-    [b][span style='color: #E80000;']Notes[/span][/b][br]
-    For help on configuration for PIA, AirVPN and custom VPN providers please go here http://lime-technology.com/forum/index.php?topic=45812.msg437678#msg437678[br]
-    IMPORTANT - To allow access to the Deluge webui, Privoxy and Deluge deamon you need to specify you LAN network, using CIDR notation for the mask, a subnet mask of 255.255.255.0 would equate to CIDR /24, 255.255.0.0 would equate to CIDR /16.
+  Deluge is a lightweight, Free Software, cross-platform BitTorrent client providing:[br]
+  Full Encryption[br]
+  WebUI[br]
+  Plugin System[br]
+  Much more...[br]
+  [br]
+
+  [br][br][b][u][span style='color: #E80000;']Configuration[/span][/u][/b][br]
+  [b]/config[/b] : Storing all Deluge config files [br]
+  [b]/downloads[/b] : Point to Downloads location[br]
+  [b]/mp4automator[/b] : mp4Automator config files
+  [br] The default credentials to login are:[br]
+  [b]username:[/b] admin[br]
+  [b]password:[/b] deluge
   </Description>
-  <Overview>
-    Deluge is a full-featured ​BitTorrent client for Linux, OS X, Unix and Windows. It uses ​libtorrent in its backend and features multiple user-interfaces including: GTK+, web and console. It has been designed using the client server model with a daemon process that handles all the bittorrent activity. The Deluge daemon is able to run on headless machines with the user-interfaces being able to connect remotely from any platform.[br]
-    This Docker includes OpenVPN to ensure a secure and private connection to the Internet, including use of iptables to prevent IP leakage when the tunnel is down. It also includes Privoxy to allow unfiltered access to index sites, to use Privoxy please point your application at "host ip:8118"
-  </Overview>
-  <Support>https://github.com/wjbeckett/docker-templates/issues/new</Support>
+  <Project>http://deluge-torrent.org/</Project>
+  <Overview>Deluge is a lightweight, Free Software, cross-platform BitTorrent client providing: Full Encryption, WebUI, Plugin System, Much more...</Overview>
   <Registry>https://hub.docker.com/r/wjbeckett/deluge-mp4/~/dockerfile/</Registry>
   <GitHub>https://github.com/wjbeckett/deluge-mp4</GitHub>
   <Repository>wjbeckett/deluge-mp4</Repository>
-  <Project>http://deluge-torrent.org/</Project>
   <BindTime>true</BindTime>
-  <Privileged>true</Privileged>
-  <Networking>
-    <Mode>bridge</Mode>
-    <Publish>
-      <Port>
-        <HostPort>8112</HostPort>
-        <ContainerPort>8112</ContainerPort>
-        <Protocol>tcp</Protocol>
-      </Port>
-      <Port>
-        <HostPort>58846</HostPort>
-        <ContainerPort>58846</ContainerPort>
-        <Protocol>tcp</Protocol>
-      </Port>
-      <Port>
-        <HostPort>58946</HostPort>
-        <ContainerPort>58946</ContainerPort>
-        <Protocol>tcp</Protocol>
-      </Port>
-      <Port>
-        <HostPort>58946</HostPort>
-        <ContainerPort>58946</ContainerPort>
-        <Protocol>udp</Protocol>
-      </Port>
-      <Port>
-        <HostPort>8118</HostPort>
-        <ContainerPort>8118</ContainerPort>
-        <Protocol>tcp</Protocol>
-      </Port>
-    </Publish>
-  </Networking>
+  <Privileged>false</Privileged>
   <Environment>
-    <Variable>
-      <Name>VPN_ENABLED</Name>
-      <Value>yes|no</Value>
-    </Variable>
-    <Variable>
-      <Name>VPN_USER</Name>
-      <Value>vpn username</Value>
-    </Variable>
-    <Variable>
-      <Name>VPN_PASS</Name>
-      <Value>vpn password</Value>
-    </Variable>
-    <Variable>
-      <Name>VPN_PROV</Name>
-      <Value>pia|airvpn|custom</Value>
-    </Variable>
-    <Variable>
-      <Name>VPN_OPTIONS</Name>
-      <Value></Value>
-    </Variable>
-    <Variable>
-      <Name>STRICT_PORT_FORWARD</Name>
-      <Value>yes</Value>
-    </Variable>
-    <Variable>
-      <Name>ENABLE_PRIVOXY</Name>
-      <Value>no|yes</Value>
-    </Variable>
-    <Variable>
-      <Name>LAN_NETWORK</Name>
-      <Value>192.168.1.0/24</Value>
-    </Variable>
-    <Variable>
-      <Name>NAME_SERVERS</Name>
-      <Value>209.222.18.222,37.235.1.174,8.8.8.8,209.222.18.218,37.235.1.177,8.8.4.4</Value>
-    </Variable>
-    <Variable>
-      <Name>DEBUG</Name>
-      <Value>false|true</Value>
-    </Variable>
-    <Variable>
-      <Name>UMASK</Name>
-      <Value>000</Value>
-    </Variable>
     <Variable>
       <Name>PUID</Name>
       <Value>99</Value>
@@ -107,39 +39,37 @@
     <Variable>
       <Name>PGID</Name>
       <Value>100</Value>
+      </Variable>
+    <Variable>
+      <Name>UMASK_SET</Name>
+      <Value>000</Value>
     </Variable>
   </Environment>
+  <Networking>
+    <Mode>host</Mode>
+  </Networking>
   <Data>
     <Volume>
-      <HostDir>/mnt/cache/appdata/config</HostDir>
+      <HostDir></HostDir>
       <ContainerDir>/config</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
     <Volume>
-      <HostDir>/mnt/cache/appdata/data</HostDir>
-      <ContainerDir>/data</ContainerDir>
+      <HostDir></HostDir>
+      <ContainerDir>/downloads</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
     <Volume>
       <HostDir></HostDir>
-      <ContainerDir>/sickbeard_mp4_automator/autoProcess.ini</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-    <Volume>
-      <HostDir></HostDir>
-      <ContainerDir>/sickbeard_mp4_automator/info.log</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-    <Volume>
-      <HostDir></HostDir>
-      <ContainerDir>/config/logs/deluge.txt</ContainerDir>
+      <ContainerDir>/mp4automator</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
   </Data>
-  <WebUI>http://[IP]:[PORT:8112]/</WebUI>
-  <Icon>https://raw.githubusercontent.com/wjbeckett/docker-templates/master/wjbeckett/images/deluge-icon.png</Icon>
-  <DonateText>If you appreciate my work, then please consider buying me a beer :D</DonateText>
-  <DonateLink>https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=MM5E27UX6AUU4</DonateLink>
-  <DonateImg>https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif</DonateImg>
+<WebUI>http://[IP]:[PORT:8112]/</WebUI>
+  <Icon>https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/deluge-icon.png</Icon>
   <ExtraParams></ExtraParams>
-</Containers>
+<DonateText>If you appreciate my work, then please consider buying me a coffee :D</DonateText>
+<DonateLink>https://paypal.me/wjbeckett</DonateLink>
+<DonateImg>https://az743702.vo.msecnd.net/cdn/coffee-3.png</DonateImg>
+<BaseImage>lsiobase/alpine:3.6</BaseImage>
+</Container>
